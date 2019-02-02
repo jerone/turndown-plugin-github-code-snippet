@@ -1,0 +1,22 @@
+{
+  "name": "turndown-plugin-github-code-snippet",
+  "version": "1.0.0",
+  "description": "Turndown plugin to convert GitHub code snippet",
+  "main": "turndown-plugin-github-code-snippets.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jerone/turndown-plugin-github-code-snippet.git"
+  },
+  "keywords": [
+    "turndown"
+  ],
+  "author": "Jeroen van Warmerdam",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/jerone/turndown-plugin-github-code-snippet/issues"
+  },
+  "homepage": "https://github.com/jerone/turndown-plugin-github-code-snippet#readme"
+}
