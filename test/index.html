@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>turndown test runner</title>
+	<link rel="stylesheet" href="../node_modules/turndown-attendant/dist/styles.css">
+</head>
+<body>
+
+	<!-- TEST CASES -->
+
+	<div class="case" data-name="Code snippet">
+		<div class="input">
+			<div class="border rounded-1 my-2">
+				<div class="f6 px-3 py-2 lh-condensed border-bottom bg-gray-light">
+					<p class="mb-0 text-bold">
+						<a href="https://github.com/jerone/UserScripts/blob/e60d4c1bd289e56273b4a19a146ca991ad3eba78/Github_Reply_Comments/Github_Reply_Comments.user.js#L24">UserScripts/Github_Reply_Comments/Github_Reply_Comments.user.js</a>
+					</p>
+					<p class="mb-0 text-gray-light">
+						Line 24
+						in
+						<a data-pjax="true" class="commit-tease-sha" href="/jerone/UserScripts/commit/e60d4c1bd289e56273b4a19a146ca991ad3eba78">e60d4c1</a>
+					</p>
+				</div>
+				<div itemprop="text" class="blob-wrapper blob-wrapper-embedded data ghd-code-wrapper">
+					<table class="highlight tab-size mb-0 js-file-line-container" data-tab-size="8">
+						<tbody>
+							<tr class="border-0">
+								<td id="L24" class="blob-num border-0 px-3 py-0 bg-white js-line-number" data-line-number="24"></td>
+								<td id="LC24" class="blob-code border-0 px-3 py-0 bg-white blob-code-inner js-file-line"> <span class="pl-c1">String</span>.<span class="pl-en">format</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">string</span>) { </td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<pre class="expected">https://github.com/jerone/UserScripts/blob/e60d4c1bd289e56273b4a19a146ca991ad3eba78/Github_Reply_Comments/Github_Reply_Comments.user.js#L24</pre>
+	</div>
+
+	<div class="case" data-name="Code snippet with 'Toggle code wrap' button from https://greasyfork.org/en/scripts/18789-github-toggle-code-wrap">
+		<div class="input">
+			<div class="border rounded-1 my-2">
+				<div class="f6 px-3 py-2 lh-condensed border-bottom bg-gray-light">
+					<p class="mb-0 text-bold">
+						<a href="https://github.com/jerone/UserScripts/blob/e60d4c1bd289e56273b4a19a146ca991ad3eba78/Github_Reply_Comments/Github_Reply_Comments.user.js#L24">UserScripts/Github_Reply_Comments/Github_Reply_Comments.user.js</a>
+					</p>
+					<p class="mb-0 text-gray-light">
+						Line 24
+						in
+						<a data-pjax="true" class="commit-tease-sha" href="/jerone/UserScripts/commit/e60d4c1bd289e56273b4a19a146ca991ad3eba78">e60d4c1</a>
+					</p>
+				</div>
+				<div itemprop="text" class="blob-wrapper blob-wrapper-embedded data ghd-code-wrapper">
+					<button class="ghd-wrap-toggle tooltipped tooltipped-sw btn btn-sm" aria-label="Toggle code wrap">
+						<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 768 768">
+							<path d="M544.5 352.5q52.5 0 90 37.5t37.5 90-37.5 90-90 37.5H480V672l-96-96 96-96v64.5h72q25.5 0 45-19.5t19.5-45-19.5-45-45-19.5H127.5v-63h417zm96-192v63h-513v-63h513zm-513 447v-63h192v63h-192z"></path>
+						</svg>
+					</button>
+					<table class="highlight tab-size mb-0 js-file-line-container" data-tab-size="8">
+						<tbody>
+							<tr class="border-0">
+								<td id="L24" class="blob-num border-0 px-3 py-0 bg-white js-line-number" data-line-number="24"></td>
+								<td id="LC24" class="blob-code border-0 px-3 py-0 bg-white blob-code-inner js-file-line"> <span class="pl-c1">String</span>.<span class="pl-en">format</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">string</span>) { </td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<pre class="expected">https://github.com/jerone/UserScripts/blob/e60d4c1bd289e56273b4a19a146ca991ad3eba78/Github_Reply_Comments/Github_Reply_Comments.user.js#L24</pre>
+	</div>
+
+	<!-- /TEST CASES -->
+
+	<script src="turndown-plugin-github-code-snippet-test.js"></script>
+</body>
+</html>

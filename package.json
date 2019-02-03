@@ -1,22 +1,27 @@
 {
   "name": "turndown-plugin-github-code-snippet",
-  "version": "1.0.0",
-  "description": "Turndown plugin to convert GitHub code snippet",
-  "main": "turndown-plugin-github-code-snippets.js",
+  "version": "1.0.1",
+  "description": "A Turndown plugin to convert GitHub code snippet in comments back into normal links.",
+  "main": "turndown-plugin-github-code-snippet.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/turndown-plugin-github-code-snippet-test.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jerone/turndown-plugin-github-code-snippet.git"
   },
   "keywords": [
-    "turndown"
+    "turndown",
+    "turndown-plugin"
   ],
   "author": "Jeroen van Warmerdam",
   "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/jerone/turndown-plugin-github-code-snippet/issues"
   },
-  "homepage": "https://github.com/jerone/turndown-plugin-github-code-snippet#readme"
+  "homepage": "https://github.com/jerone/turndown-plugin-github-code-snippet#readme",
+  "devDependencies": {
+    "turndown": "^5.0.3",
+    "turndown-attendant": "0.0.2"
+  }
 }
