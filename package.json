@@ -1,6 +1,6 @@
 {
   "name": "turndown-plugin-github-code-snippet",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Turndown plugin to convert GitHub code snippet in comments back into normal links.",
   "main": "turndown-plugin-github-code-snippet.js",
   "scripts": {
