@@ -1,6 +1,6 @@
 var Attendant = require('turndown-attendant');
 var TurndownService = require('turndown');
-var turndownPluginGithubCodeSnippet = require('../turndown-plugin-github-code-snippet.js');
+var turndownPluginGithubCodeSnippet = require('../src/turndown-plugin-github-code-snippet.js');
 
 var attendant = new Attendant({
 	file: __dirname + '/index.html',

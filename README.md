@@ -18,7 +18,7 @@ In an UserScript:
 
 ```js
 // @require  https://unpkg.com/turndown/dist/turndown.js
-// @require  https://unpkg.com/turndown-plugin-github-code-snippet/turndown-plugin-github-code-snippet.js
+// @require  https://unpkg.com/turndown-plugin-github-code-snippet/src/turndown-plugin-github-code-snippet.js
 ```
 
 ## Usage
