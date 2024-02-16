@@ -1,10 +1,10 @@
 # [turndown-plugin-github-code-snippet](https://github.com/jerone/turndown-plugin-github-code-snippet/)
 
-A [Turndown](https://github.com/domchristie/turndown) plugin to convert [GitHub code snippet in comments](https://help.github.com/articles/creating-a-permanent-link-to-a-code-snippet/) back into normal links. Useful for UserScripts.
+A [Turndown](https://github.com/mixmark-io/turndown) plugin to convert [GitHub code snippet in comments](https://help.github.com/articles/creating-a-permanent-link-to-a-code-snippet/) back into normal links. Useful for UserScripts.
 
 ## Requirements
 
-- [Turndown](https://github.com/domchristie/turndown) - version 4 or higher.
+- [Turndown](https://github.com/mixmark-io/turndown) - version 4 or higher.
 
 ## Installation
 
