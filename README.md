@@ -25,7 +25,7 @@ In an UserScript:
 
 ```js
 var turndownService = new TurndownService();
-turndownService.use(turndownPluginGithubCodeSnippet);
+turndownService.use(turndownPluginGitHubCodeSnippet);
 var markdown = turndownService.turndown(document.querySelector(".comment"));
 console.log(markdown);
 ```
