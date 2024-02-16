@@ -8,6 +8,12 @@ A [Turndown](https://github.com/domchristie/turndown) plugin to convert [GitHub 
 
 ## Installation
 
+As a NPM package:
+
+```sh
+npm install turndown-plugin-github-code-snippet
+```
+
 In an UserScript:
 
 ```js
