@@ -2,28 +2,38 @@
   "name": "turndown-plugin-github-code-snippet",
   "version": "1.0.2",
   "description": "A Turndown plugin to convert GitHub code snippet in comments back into normal links.",
-  "main": "turndown-plugin-github-code-snippet.js",
-  "scripts": {
-    "lint": "lockfile-lint && editorconfig-checker --exclude LICENSE",
-    "lint:fix": "prettier --write \"**/*\"",
-    "test": "node test/turndown-plugin-github-code-snippet-test.js"
+  "keywords": [
+    "turndown",
+    "turndown-plugin"
+  ],
+  "homepage": "https://github.com/jerone/turndown-plugin-github-code-snippet#readme",
+  "bugs": {
+    "url": "https://github.com/jerone/turndown-plugin-github-code-snippet/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jerone/turndown-plugin-github-code-snippet.git"
   },
-  "keywords": [
-    "turndown",
-    "turndown-plugin"
-  ],
-  "author": "Jeroen van Warmerdam",
   "license": "GPL-3.0-or-later",
-  "bugs": {
-    "url": "https://github.com/jerone/turndown-plugin-github-code-snippet/issues"
+  "author": "Jeroen van Warmerdam <jeronevw@hotmail.com>",
+  "main": "turndown-plugin-github-code-snippet.js",
+  "scripts": {
+    "lint": "lockfile-lint && editorconfig-checker --exclude LICENSE && eslint -f checklist --report-unused-disable-directives .",
+    "lint:fix": "prettier --write \"**/*\" & eslint -f checklist --fix .",
+    "test": "node test/turndown-plugin-github-code-snippet-test.js"
   },
-  "homepage": "https://github.com/jerone/turndown-plugin-github-code-snippet#readme",
   "devDependencies": {
+    "@eslint-types/prettier": "^5.1.3",
     "editorconfig-checker": "^5.1.4",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-define-config": "^2.1.0",
+    "eslint-formatter-checklist": "^0.1.0",
+    "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-json-files": "^4.1.0",
+    "eslint-plugin-markdownlint": "^0.5.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-security": "^2.1.1",
     "lockfile-lint": "^4.13.1",
     "prettier": "^3.2.5",
     "turndown": "^7.1.2",
@@ -31,5 +41,8 @@
   },
   "peerDependencies": {
     "turndown": ">=4"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
