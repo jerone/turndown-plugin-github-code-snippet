@@ -9,3 +9,6 @@ end_of_line = lf # To allow compiling code on CI.
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
+
+[test/index.html]
+max_line_length = 10000 # Don't wrap lines with Prettier.

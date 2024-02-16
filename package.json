@@ -4,6 +4,7 @@
   "description": "A Turndown plugin to convert GitHub code snippet in comments back into normal links.",
   "main": "turndown-plugin-github-code-snippet.js",
   "scripts": {
+    "lint:fix": "prettier --write \"**/*\"",
     "test": "node test/turndown-plugin-github-code-snippet-test.js"
   },
   "repository": {
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/jerone/turndown-plugin-github-code-snippet#readme",
   "devDependencies": {
+    "prettier": "^3.2.5",
     "turndown": "^7.1.2",
     "turndown-attendant": "0.0.3"
   },
