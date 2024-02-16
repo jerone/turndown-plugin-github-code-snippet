@@ -27,3 +27,8 @@ console.log(markdown);
 ## License
 
 turndown-plugin-github-code-snippet is copyright &#169; 2019+ Jeroen van Warmerdam and released under the [GNU General Public License v3.0 license](https://github.com/jerone/turndown-plugin-github-code-snippet/blob/master/LICENSE).
+
+<br/>
+<br/>
+
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://stand-with-ukraine.pp.ua)
