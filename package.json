@@ -23,5 +23,8 @@
   "devDependencies": {
     "turndown": "^7.1.2",
     "turndown-attendant": "0.0.3"
+  },
+  "peerDependencies": {
+    "turndown": ">=4"
   }
 }
