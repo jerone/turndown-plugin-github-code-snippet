@@ -1,0 +1,13 @@
+// cSpell Settings
+{
+  "version": "0.2",
+  // language - current active spelling language.
+  "language": "en,nl",
+  // words - list of words to be always considered correct.
+  "words": [
+    "issuetracker",
+    "Jeroen",
+    "pjax",
+    "Warmerdam"
+  ]
+}

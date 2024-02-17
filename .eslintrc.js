@@ -17,7 +17,7 @@ module.exports = defineConfig({
   },
   extends: [
     "eslint:recommended",
-    //"plugin:@cspell/recommended",
+    "plugin:@cspell/recommended",
     "plugin:security/recommended-legacy",
 
     // Display Prettier errors as ESLint errors.
