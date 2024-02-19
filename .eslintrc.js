@@ -91,6 +91,7 @@ module.exports = defineConfig({
           "error",
           { allowed_elements: ["br", "sup", "kbd"] },
         ],
+        "prettier/prettier": ["error", { parser: "markdown" }],
       },
     },
   ],
