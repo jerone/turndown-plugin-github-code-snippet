@@ -1,0 +1,4 @@
+{
+  "_Description": "Config file for editorconfig-checker.",
+  "Exclude": ["LICENSE"]
+}
