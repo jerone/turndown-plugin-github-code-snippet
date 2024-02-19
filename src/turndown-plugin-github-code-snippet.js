@@ -1,3 +1,5 @@
+/* eslint-env amd, commonjs */
+
 (function (root, factory) {
   if (typeof define === "function" && define.amd) {
     // AMD

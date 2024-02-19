@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 // @ts-check
 const { defineConfig } = require("eslint-define-config");
 
@@ -6,10 +8,7 @@ const { defineConfig } = require("eslint-define-config");
 module.exports = defineConfig({
   root: true,
   env: {
-    amd: true,
     browser: true,
-    commonjs: true,
-    node: true,
     es2021: true,
   },
   parserOptions: {
@@ -93,7 +92,6 @@ module.exports = defineConfig({
           "error",
           { allowed_elements: ["br", "sup", "kbd"] },
         ],
-        "prettier/prettier": ["error", { parser: "markdown" }],
       },
     },
   ],
