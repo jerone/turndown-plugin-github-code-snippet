@@ -18,14 +18,14 @@
   "author": "Jeroen van Warmerdam <jeronevw@hotmail.com>",
   "main": "turndown-plugin-github-code-snippet.js",
   "scripts": {
-    "lint": "lockfile-lint && editorconfig-checker --exclude LICENSE && eslint -f checklist --report-unused-disable-directives .",
+    "lint": "lockfile-lint && editorconfig-checker --exclude LICENSE && cspell . && eslint -f checklist --report-unused-disable-directives .",
     "lint:fix": "prettier --write \"**/*\" & eslint -f checklist --fix .",
     "test": "node test/turndown-plugin-github-code-snippet-test.js"
   },
   "devDependencies": {
     "@cspell/cspell-types": "^8.3.2",
-    "@cspell/eslint-plugin": "^8.3.2",
     "@eslint-types/prettier": "^5.1.3",
+    "cspell": "^8.4.0",
     "editorconfig-checker": "^5.1.4",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
