@@ -1,4 +1,3 @@
-// This config file does not work.
 /* eslint-env node */
 
 "use strict";
