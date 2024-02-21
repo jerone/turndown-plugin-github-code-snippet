@@ -28,9 +28,9 @@ const pad = (n, s) => String(n).padStart(s, " ");
 
 function assert(linter, condition, output) {
   if (condition) {
-    const msg =
-      " lint.js unexpectedly failed. Something has probably changed with ";
-    console.error(yellow + warning + msg + linter + "." + reset);
+    console.error(
+      `${yellow}${warning} lint.js unexpectedly failed. Something has probably changed with ${linter}.${reset}`,
+    );
     console.error(output);
     console.log("");
   } else if (enableDebug) {
@@ -46,15 +46,15 @@ function assert(linter, condition, output) {
  */
 function failure(linter, exception, output) {
   if (enableDebug) {
-    console.log(linter + " exception:", exception);
+    console.log(`${linter} exception:`, exception);
   }
 
-  console.log(red + error + " " + linter + " failed:\n" + reset);
+  console.log(`\n${red}${error} ${linter} failed:\n${reset}`);
   console.log(
     output
       .trim()
       .split(/\n\r?/g)
-      .map((line) => "  " + line)
+      .map((line) => `  ${line}`)
       .join("\n")
       // eslint-disable-next-line no-control-regex
       .replace(/\s+\x1b[[]0m$/g, reset), // Remove empty lines with only color reset code.
@@ -63,9 +63,7 @@ function failure(linter, exception, output) {
 }
 
 function successful(linter) {
-  console.log(
-    green + success + " " + linter + " detected no issues.\n" + reset,
-  );
+  console.log(`\n${green}${success} ${linter} detected no issues.\n${reset}`);
 }
 
 function header(linter) {
@@ -151,12 +149,13 @@ function cspell() {
       shell: false,
     });
 
+    let previousData = "  ";
+    let summary = "";
     // First comes the index & filename.
     // Next run comes the time & conditional failure char.
     // This is repeated until all files are processed.
     // Last iteration contains the summary.
-    let previousData = "  ";
-    let summary = "";
+    // TODO: replace \ with /. But I'm afraid of ASCII codes.
     output.stderr?.on("data", (data) => {
       const str = data.toString();
       if (str.includes("Files checked:")) {
@@ -185,18 +184,14 @@ function cspell() {
 
       if (!summary) {
         console.log(
-          "\n" +
-            yellow +
-            warning +
-            linter +
-            " unexpectedly stopped without a summary.",
+          `\n${yellow}${warning} ${linter} unexpectedly stopped without a summary.${reset}`,
         );
       }
 
       if (code == 0) {
-        console.log("\n" + green + success + " " + summary + reset);
+        console.log(`\n${green}${success} ${summary}${reset}`);
       } else {
-        console.log("\n" + red + error + " " + summary + reset);
+        console.log(`\n${red}${error} ${summary}${reset}`);
       }
       resolve();
     });
@@ -204,14 +199,9 @@ function cspell() {
     // Spawn failed.
     output.on("error", (code) => {
       console.log(
-        "\n" +
-          yellow +
-          warning +
-          linter +
-          " unexpectedly failed with error " +
-          code.toString(),
+        `\n${yellow}${warning} ${linter} unexpectedly failed with error ${code}.${reset}`,
       );
-      reject();
+      reject(code);
     });
   });
 }
