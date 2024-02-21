@@ -59,7 +59,6 @@ function failure(linter, exception, output) {
       // eslint-disable-next-line no-control-regex
       .replace(/\s+\x1b[[]0m$/g, reset), // Remove empty lines with only color reset code.
   );
-  console.log("");
 }
 
 function warn(msg) {
@@ -72,6 +71,10 @@ function successful(msg) {
 
 function header(linter) {
   console.log(`\n${underscore}${linter}${reset}`);
+}
+
+function footer() {
+  console.log("");
 }
 
 /**
@@ -100,6 +103,7 @@ async function lockfileLint() {
   } catch (exception) {
     failure(linter, exception, exception.stderr);
   }
+  footer();
 }
 
 /**
@@ -132,6 +136,7 @@ async function editorconfigChecker() {
   } catch (exception) {
     failure(linter, exception, exception.stdout);
   }
+  footer();
 }
 
 /**
@@ -195,12 +200,14 @@ function cspell() {
       } else {
         console.log(`\n${red}${error} ${summary}${reset}`);
       }
+      footer();
       resolve();
     });
 
     // Spawn failed.
     output.on("error", (code) => {
       warn(`${linter} unexpectedly failed with error ${code}.`);
+      footer();
       reject(code);
     });
   });
