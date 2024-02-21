@@ -66,8 +66,8 @@ function warn(msg) {
   console.warn(`\n${yellow}${warning} ${msg}${reset}`);
 }
 
-function successful(linter) {
-  console.log(`\n${green}${success} ${linter} detected no issues.\n${reset}`);
+function successful(msg) {
+  console.log(`\n${green}${success} ${msg}${reset}`);
 }
 
 function header(linter) {
@@ -96,7 +96,7 @@ async function lockfileLint() {
         output.error,
       output,
     );
-    successful(linter);
+    successful(`${linter} detected no issues.`);
   } catch (exception) {
     failure(linter, exception, exception.stderr);
   }
@@ -128,7 +128,7 @@ async function editorconfigChecker() {
     );
     const output = await execP(cmd);
     assert(linter, output.stdout || output.stderr || output.error, output);
-    successful(linter);
+    successful(`${linter} detected no issues.`);
   } catch (exception) {
     failure(linter, exception, exception.stdout);
   }
@@ -191,7 +191,7 @@ function cspell() {
       }
 
       if (code == 0) {
-        console.log(`\n${green}${success} ${summary}${reset}`);
+        successful(summary);
       } else {
         console.log(`\n${red}${error} ${summary}${reset}`);
       }
