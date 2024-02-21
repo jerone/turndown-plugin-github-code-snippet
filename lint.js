@@ -16,12 +16,15 @@ const enableDebug = false;
 const red = "\x1b[31;1m";
 const green = "\x1b[32;1m";
 const yellow = "\x1b[33;1m";
+const gray = "\x1b[90m";
 const reset = "\x1b[0m";
 const underscore = "\x1b[4m";
 
 const error = "✖";
 const warning = "⚡";
 const success = "✔";
+
+const pad = (n, s) => String(n).padStart(s, " ");
 
 function assert(linter, condition, output) {
   if (condition) {
@@ -98,12 +101,22 @@ async function lockfileLint() {
  * Comes back with nothing when successful.
  * Throws exception with `stdout`.
  */
-// TODO: -dry-run for list of all files.
 async function editorconfigChecker() {
   const linter = "EditorConfig-checker";
   const cmd =
     'editorconfig-checker --config ".config/editorconfig-checker.config.json"';
   try {
+    const dryRun = await execP(cmd + " --dry-run");
+    console.log(
+      dryRun.stdout
+        .trim()
+        .split(/\n\r?/g)
+        .map((line, index, arr) => {
+          const l = arr.length;
+          return `  ${pad(index + 1, String(l).length)}/${l} ${gray}./${line}${reset}`;
+        })
+        .join("\n"),
+    );
     const output = await execP(cmd);
     assert(linter, output.stdout || output.stderr || output.error, output);
     successful(linter);
