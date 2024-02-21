@@ -68,6 +68,10 @@ function successful(linter) {
   );
 }
 
+function header(linter) {
+  console.log(`\n${underscore}${linter}${reset}`);
+}
+
 /**
  * Lockfile-lint
  * https://github.com/lirantal/lockfile-lint#readme
@@ -78,6 +82,7 @@ function successful(linter) {
 async function lockfileLint() {
   const linter = "Lockfile-lint";
   const cmd = "lockfile-lint";
+  header(linter);
   try {
     console.log(`  1/1 ${gray}./package-lock.json${reset}`);
     const output = await execP(cmd);
@@ -106,6 +111,7 @@ async function editorconfigChecker() {
   const linter = "EditorConfig-checker";
   const cmd =
     'editorconfig-checker --config ".config/editorconfig-checker.config.json"';
+  header(linter);
   try {
     const dryRun = await execP(cmd + " --dry-run");
     console.log(
@@ -137,13 +143,13 @@ function cspell() {
   const cmd = "cspell.cmd";
 
   return new Promise(function (resolve, reject) {
+    header(linter);
+
     // Spawn is needed to get the progress.
     // Spawn (without stdio "process.*") makes the colors disappear. Force colors with flag.
     const output = spawn(cmd, ["--color", "."], {
       shell: false,
     });
-
-    console.log(`${linter} started:`);
 
     // First comes the index & filename.
     // Next run comes the time & conditional failure char.
