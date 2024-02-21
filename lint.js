@@ -28,8 +28,8 @@ const pad = (n, s) => String(n).padStart(s, " ");
 
 function assert(linter, condition, output) {
   if (condition) {
-    console.error(
-      `${yellow}${warning} lint.js unexpectedly failed. Something has probably changed with ${linter}.${reset}`,
+    warn(
+      `lint.js unexpectedly failed. Something has probably changed with ${linter}.`,
     );
     console.error(output);
     console.log("");
@@ -60,6 +60,10 @@ function failure(linter, exception, output) {
       .replace(/\s+\x1b[[]0m$/g, reset), // Remove empty lines with only color reset code.
   );
   console.log("");
+}
+
+function warn(msg) {
+  console.warn(`\n${yellow}${warning} ${msg}${reset}`);
 }
 
 function successful(linter) {
@@ -183,9 +187,7 @@ function cspell() {
       }
 
       if (!summary) {
-        console.log(
-          `\n${yellow}${warning} ${linter} unexpectedly stopped without a summary.${reset}`,
-        );
+        warn(`${linter} unexpectedly stopped without a summary.`);
       }
 
       if (code == 0) {
@@ -198,9 +200,7 @@ function cspell() {
 
     // Spawn failed.
     output.on("error", (code) => {
-      console.log(
-        `\n${yellow}${warning} ${linter} unexpectedly failed with error ${code}.${reset}`,
-      );
+      warn(`${linter} unexpectedly failed with error ${code}.`);
       reject(code);
     });
   });
