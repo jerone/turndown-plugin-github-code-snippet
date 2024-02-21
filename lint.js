@@ -79,6 +79,7 @@ async function lockfileLint() {
   const linter = "Lockfile-lint";
   const cmd = "lockfile-lint";
   try {
+    console.log(`  1/1 ${gray}./package-lock.json${reset}`);
     const output = await execP(cmd);
     assert(
       linter,
