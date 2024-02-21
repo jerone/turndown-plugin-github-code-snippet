@@ -216,5 +216,9 @@ function cspell() {
   });
 }
 
-// TODO: ESLint
-Promise.all([lockfileLint(), editorconfigChecker()]).then(cspell);
+(async () => {
+  await lockfileLint();
+  await editorconfigChecker();
+  await cspell();
+  // TODO: ESLint
+})();
