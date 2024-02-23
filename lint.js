@@ -45,7 +45,7 @@ function assert(linter, condition, output) {
  * @param {Error} exception Exception.
  * @param {string} output Command output.
  */
-function failure(linter, exception, output) {
+function unsuccessful(linter, exception, output) {
   if (enableDebug) {
     console.log(`${linter} exception:`, exception);
   }
@@ -102,7 +102,7 @@ async function lockfileLint() {
     );
     successful(`${linter} detected no issues.`);
   } catch (exception) {
-    failure(linter, exception, exception.stderr);
+    unsuccessful(linter, exception, exception.stderr);
   }
   footer();
 }
@@ -135,7 +135,7 @@ async function editorconfigChecker() {
     assert(linter, output.stdout || output.stderr || output.error, output);
     successful(`${linter} detected no issues.`);
   } catch (exception) {
-    failure(linter, exception, exception.stdout);
+    unsuccessful(linter, exception, exception.stdout);
   }
   footer();
 }
