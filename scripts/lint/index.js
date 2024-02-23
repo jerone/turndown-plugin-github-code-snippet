@@ -10,22 +10,18 @@
 const util = require("node:util");
 const { exec, spawn } = require("node:child_process");
 const execP = util.promisify(exec);
+const {
+  colorReset,
+  styles,
+  prefixes,
+  pad,
+  error,
+  warning,
+  success,
+  dim,
+} = require("./utils");
 
 const enableDebug = false;
-
-const red = "\x1b[31;1m";
-const green = "\x1b[32;1m";
-const yellow = "\x1b[33;1m";
-const gray = "\x1b[90m";
-const reset = "\x1b[0m";
-const underline = "\x1b[4m";
-const underlineReset = "\x1b[24m";
-
-const error = "✖";
-const warning = "⚡";
-const success = "✔";
-
-const pad = (n, s) => String(n).padStart(s, " ");
 
 function assert(linter, condition, output) {
   if (condition) {
@@ -47,7 +43,7 @@ function unsuccessful(linter, exception, output) {
     console.log(`${linter} exception:`, exception);
   }
 
-  console.log(`\n${red}${error} ${linter} failed:\n${reset}`);
+  console.log(error(`\n${prefixes.error} ${linter} failed:\n`));
   console.log(
     output
       .trim()
@@ -55,12 +51,12 @@ function unsuccessful(linter, exception, output) {
       .map((line) => `  ${line}`)
       .join("\n")
       // eslint-disable-next-line no-control-regex
-      .replace(/\s+\x1b[[]0m$/g, reset), // Remove empty lines with only color reset code.
+      .replace(/\s+\x1b[[]0m$/g, colorReset), // Remove empty lines with only color reset code.
   );
 }
 
 function warn(msg) {
-  console.warn(`\n${yellow}${warning} ${msg}${reset}`);
+  console.warn(warning(`\n${prefixes.warning} ${msg}`));
 }
 
 function successful(msg, output = undefined) {
@@ -72,14 +68,14 @@ function successful(msg, output = undefined) {
         .map((line) => `  ${line}`)
         .join("\n")
         // eslint-disable-next-line no-control-regex
-        .replace(/\s+\x1b[[]0m$/g, reset), // Remove empty lines with only color reset code.
+        .replace(/\s+\x1b[[]0m$/g, colorReset), // Remove empty lines with only color reset code.
     );
   }
-  console.log(`\n${green}${success} ${msg}${reset}`);
+  console.log(success(`\n${prefixes.success} ${msg}`));
 }
 
 function header(linter) {
-  console.log(`\n${underline}${linter}${underlineReset}`);
+  console.log(`\n${styles.underline}${linter}${styles.underlineReset}`);
 }
 
 function footer() {
@@ -207,7 +203,7 @@ function cspell() {
       if (code == 0) {
         successful(summary);
       } else {
-        console.log(`\n${red}${error} ${summary}${reset}`);
+        console.log(error(`\n${prefixes.error} ${summary}`));
       }
       footer();
       resolve();
