@@ -1,5 +1,5 @@
 /**
- * @fileoverview An ESLint formatter with checklist style.
+ * @fileoverview An ESLint formatter with list style.
  * @author Jeroen van Warmerdam
  */
 

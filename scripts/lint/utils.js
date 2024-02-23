@@ -1,3 +1,8 @@
+/**
+ * @fileoverview Utilities.
+ * @author Jeroen van Warmerdam
+ */
+
 /* eslint-env node */
 
 "use strict";
