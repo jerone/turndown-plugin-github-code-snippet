@@ -18,7 +18,8 @@ const green = "\x1b[32;1m";
 const yellow = "\x1b[33;1m";
 const gray = "\x1b[90m";
 const reset = "\x1b[0m";
-const underscore = "\x1b[4m";
+const underline = "\x1b[4m";
+const underlineReset = "\x1b[24m";
 
 const error = "✖";
 const warning = "⚡";
@@ -70,7 +71,7 @@ function successful(msg) {
 }
 
 function header(linter) {
-  console.log(`\n${underscore}${linter}${reset}`);
+  console.log(`\n${underline}${linter}${underlineReset}`);
 }
 
 function footer() {
