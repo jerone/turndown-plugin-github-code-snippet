@@ -19,7 +19,7 @@
   "main": "turndown-plugin-github-code-snippet.js",
   "scripts": {
     "lint": "lockfile-lint && editorconfig-checker --config \".config/editorconfig-checker.config.json\" && cspell . && eslint -f checklist --report-unused-disable-directives .",
-    "lint2": "node lint.js",
+    "lint2": "node ./scripts/lint/index.js",
     "lint:fix": "prettier --write \"**/*\" & eslint -f checklist --fix .",
     "test": "node test/turndown-plugin-github-code-snippet-test.js"
   },

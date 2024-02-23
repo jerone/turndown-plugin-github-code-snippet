@@ -29,11 +29,8 @@ const pad = (n, s) => String(n).padStart(s, " ");
 
 function assert(linter, condition, output) {
   if (condition) {
-    warn(
-      `lint.js unexpectedly failed. Something has probably changed with ${linter}.`,
-    );
+    warn(`lint.js unexpectedly failed. Maybe ${linter} changed it's output.`);
     console.error(output);
-    console.log("");
   } else if (enableDebug) {
     console.log(linter, output);
   }
@@ -66,7 +63,18 @@ function warn(msg) {
   console.warn(`\n${yellow}${warning} ${msg}${reset}`);
 }
 
-function successful(msg) {
+function successful(msg, output = undefined) {
+  if (output) {
+    console.log(
+      output
+        .trim()
+        .split(/\n\r?/g)
+        .map((line) => `  ${line}`)
+        .join("\n")
+        // eslint-disable-next-line no-control-regex
+        .replace(/\s+\x1b[[]0m$/g, reset), // Remove empty lines with only color reset code.
+    );
+  }
   console.log(`\n${green}${success} ${msg}${reset}`);
 }
 
@@ -214,9 +222,36 @@ function cspell() {
   });
 }
 
+/**
+ * ESLint
+ *
+ * Comes back with `stdout` when successful.
+ * Throws exception with `stdout`.
+ */
+async function eslint() {
+  const linter = "ESLint";
+  const cmd =
+    "eslint -f ./scripts/lint/eslint-formatter.js --report-unused-disable-directives .";
+  header(linter);
+  try {
+    const output = await execP(cmd);
+    assert(
+      linter,
+      !output.stdout ||
+        (output.stderr && !output.stderr.includes("punycode")) || // DeprecationWarning: The `punycode` module is deprecated.
+        output.error,
+      output,
+    );
+    successful(`${linter} detected no issues.`, output.stdout);
+  } catch (exception) {
+    unsuccessful(linter, exception, exception.stdout);
+  }
+  footer();
+}
+
 (async () => {
   await lockfileLint();
   await editorconfigChecker();
   await cspell();
-  // TODO: ESLint
+  await eslint();
 })();
