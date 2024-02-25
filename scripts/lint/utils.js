@@ -7,6 +7,8 @@
 
 "use strict";
 
+const path = require("node:path");
+
 /**
  * ANSI colors.
  */
@@ -92,5 +94,8 @@ exports.pluralize = function (word, count) {
  * @returns Relative file path.
  */
 exports.toRelativePath = function (filePath, root) {
-  return filePath.replace(root, ".");
+  const uri = filePath.replace("file:///", "");
+  const rel = path.relative(root, uri);
+  if (rel.startsWith("..")) return uri;
+  return "." + path.sep + rel;
 };
