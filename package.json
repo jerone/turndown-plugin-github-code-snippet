@@ -19,7 +19,7 @@
   "main": "turndown-plugin-github-code-snippet.js",
   "scripts": {
     "lint": "node ./scripts/lint/index.js",
-    "lint:fix": "prettier --write \"**/*\" & eslint -f checklist --fix .",
+    "lint:fix": "prettier --write \"**/*\" & eslint -f ./scripts/lint/eslint-formatter.js --fix .",
     "test": "node test/turndown-plugin-github-code-snippet-test.js"
   },
   "devDependencies": {
