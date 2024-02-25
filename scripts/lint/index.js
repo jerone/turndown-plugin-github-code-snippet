@@ -7,6 +7,7 @@
 
 "use strict";
 
+const path = require("node:path");
 const util = require("node:util");
 const { exec } = require("node:child_process");
 const execP = util.promisify(exec);
@@ -94,7 +95,7 @@ async function lockfileLint() {
   const cmd = "lockfile-lint";
   header(linter);
   try {
-    console.log(`  ${dim("1/1")} ./package-lock.json`);
+    console.log(`  ${dim("1/1")} .${path.sep}package-lock.json`);
     const output = await execP(cmd);
     assert(
       linter,
@@ -132,7 +133,8 @@ async function editorconfigChecker() {
         .map((line, index, arr) => {
           const l = arr.length;
           const counter = `${pad(index + 1, String(l).length)}/${l}`;
-          return `  ${dim(counter)} ./${line}`;
+          const filePath = "." + path.sep + path.normalize(line);
+          return `  ${dim(counter)} ${filePath}`;
         })
         .join("\n"),
     );
