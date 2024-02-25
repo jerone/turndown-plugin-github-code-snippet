@@ -8,7 +8,7 @@
 "use strict";
 
 const util = require("node:util");
-const { exec, spawn } = require("node:child_process");
+const { exec } = require("node:child_process");
 const execP = util.promisify(exec);
 const {
   colorReset,
@@ -149,74 +149,21 @@ async function editorconfigChecker() {
  * CSpell
  * https://cspell.org
  *
- * Uses `spawn` to get files during progress.
+ * Comes back with `stdout` when successful.
+ * Throws exception with `stdout`.
  */
-function cspell() {
+async function cspell() {
   const linter = "CSpell";
-  const cmd = "cspell.cmd";
-
-  return new Promise(function (resolve, reject) {
-    header(linter);
-
-    // Spawn is needed to get the progress.
-    // Spawn (without stdio "process.*") makes the colors disappear. Force colors with flag.
-    const output = spawn(cmd, ["--color", "."], {
-      shell: false,
-    });
-
-    let previousData = "  ";
-    let summary = "";
-    // First comes the index & filename.
-    // Next run comes the time & conditional failure char.
-    // This is repeated until all files are processed.
-    // Last iteration contains the summary.
-    // TODO: replace \ with /. But I'm afraid of ASCII codes.
-    output.stderr?.on("data", (data) => {
-      const str = data.toString();
-      if (str.includes("Files checked:")) {
-        summary = str;
-        return;
-      }
-      const eol = str.endsWith("\n");
-      if (eol) {
-        console.log(previousData + data.toString().replace(/[\n\r]*/g, ""));
-        previousData = "  ";
-      } else {
-        previousData += str.replace(/[\n\r]*/g, "");
-      }
-    });
-
-    // Stdout returns the error message.
-    output.stdout?.on("data", (data) => {
-      console.log("  " + data.toString().replace(/[\n\r]*/g, ""));
-    });
-
-    // Spawn finishes.
-    output.on("close", (code) => {
-      if (enableDebug) {
-        console.log(`${linter} exited with code ${code}`);
-      }
-
-      if (!summary) {
-        warn(`${linter} unexpectedly stopped without a summary.`);
-      }
-
-      if (code == 0) {
-        successful(summary);
-      } else {
-        console.log(error(`\n${prefixes.error} ${summary}`));
-      }
-      footer();
-      resolve();
-    });
-
-    // Spawn failed.
-    output.on("error", (code) => {
-      warn(`${linter} unexpectedly failed with error ${code}.`);
-      footer();
-      reject(code);
-    });
-  });
+  const cmd = "cspell --reporter ./scripts/lint/cspell-reporter.js .";
+  header(linter);
+  try {
+    const output = await execP(cmd);
+    assert(linter, !output.stdout || output.stderr || output.error, output);
+    successful(`${linter} detected no issues.`, output.stdout);
+  } catch (exception) {
+    unsuccessful(linter, exception, exception.stdout);
+  }
+  footer();
 }
 
 /**
