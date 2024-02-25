@@ -94,7 +94,7 @@ async function lockfileLint() {
   const cmd = "lockfile-lint";
   header(linter);
   try {
-    console.log(`  1/1 ${gray}./package-lock.json${reset}`);
+    console.log(`  ${dim("1/1")} ./package-lock.json`);
     const output = await execP(cmd);
     assert(
       linter,
@@ -131,7 +131,8 @@ async function editorconfigChecker() {
         .split(/\n\r?/g)
         .map((line, index, arr) => {
           const l = arr.length;
-          return `  ${pad(index + 1, String(l).length)}/${l} ${gray}./${line}${reset}`;
+          const indexer = `${pad(index + 1, String(l).length)}/${l}`;
+          return `  ${dim(indexer)} ./${line}`;
         })
         .join("\n"),
     );

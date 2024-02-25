@@ -14,8 +14,9 @@ const {
   success,
   dim,
   linkify,
-  toRelativePath,
+  pad,
   pluralize,
+  toRelativePath,
 } = require("./utils");
 
 function reportFile(result, index, length, path) {
@@ -27,7 +28,7 @@ function reportFile(result, index, length, path) {
   } else {
     prefix = success(prefixes.success);
   }
-  const indexer = dim(`${index}/${length}`);
+  const indexer = dim(`${pad(index, String(length).length)}/${length}`);
   return `${indexer} ${prefix} ${path}`;
 }
 
@@ -43,7 +44,8 @@ function reportMessage(result, path) {
   }
   const rule = dim(`[${result.ruleId}]`);
   const link = linkify(path, result.line, result.column);
-  return `    ${prefix} ${result.message} ${rule} ${link}`;
+  // TODO: spaces should be calculated.
+  return `      ${prefix} ${result.message} ${rule} ${link}`;
 }
 
 function reportSummary(result) {
