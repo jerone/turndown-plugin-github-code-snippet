@@ -1,6 +1,7 @@
 fileoverview
 issuetracker
 Jeroen
+linkify
 pjax
 setext
 sublist
