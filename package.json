@@ -18,8 +18,7 @@
   "author": "Jeroen van Warmerdam <jeronevw@hotmail.com>",
   "main": "turndown-plugin-github-code-snippet.js",
   "scripts": {
-    "lint": "lockfile-lint && editorconfig-checker --config \".config/editorconfig-checker.config.json\" && cspell . && eslint -f checklist --report-unused-disable-directives .",
-    "lint2": "node ./scripts/lint/index.js",
+    "lint": "node ./scripts/lint/index.js",
     "lint:fix": "prettier --write \"**/*\" & eslint -f checklist --fix .",
     "test": "node test/turndown-plugin-github-code-snippet-test.js"
   },
@@ -31,7 +30,6 @@
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-define-config": "^2.1.0",
-    "eslint-formatter-checklist": "^0.1.0",
     "eslint-plugin-json": "^3.1.0",
     "eslint-plugin-json-files": "^4.1.0",
     "eslint-plugin-markdownlint": "^0.5.0",
