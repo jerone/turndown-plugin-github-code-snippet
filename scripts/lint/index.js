@@ -14,11 +14,11 @@ const {
   colorReset,
   styles,
   prefixes,
-  pad,
   error,
   warning,
   success,
   dim,
+  pad,
 } = require("./utils");
 
 const enableDebug = false;
@@ -227,7 +227,7 @@ function cspell() {
 async function eslint() {
   const linter = "ESLint";
   const cmd =
-    "eslint -f ./scripts/lint/eslint-formatter.js --report-unused-disable-directives .";
+    "eslint --format ./scripts/lint/eslint-formatter.js --report-unused-disable-directives .";
   header(linter);
   try {
     const output = await execP(cmd);
