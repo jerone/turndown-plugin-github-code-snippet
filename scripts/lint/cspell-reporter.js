@@ -17,6 +17,8 @@ const {
 module.exports.getReporter = function getReporter(settings, _config) {
   const root = path.resolve(settings?.root || process.cwd());
 
+  let counterLength;
+
   return {
     progress: (progress) => {
       if (progress.type === "ProgressFileComplete") {
@@ -24,15 +26,15 @@ module.exports.getReporter = function getReporter(settings, _config) {
           progress.numErrors === 0
             ? success(prefixes.success)
             : error(prefixes.error);
-        const indexer = dim(
-          `${pad(progress.fileNum, String(progress.fileCount).length)}/${progress.fileCount}`,
-        );
+        const counter = `${pad(progress.fileNum, String(progress.fileCount).length)}/${progress.fileCount}`;
+        counterLength ??= counter.length;
         const filename = toRelativePath(progress.filename, root);
         const duration = dim(progress.elapsedTimeMs.toFixed(2) + "ms");
-        console.log(`${indexer} ${prefix} ${filename} - ${duration}`);
+        console.log(`${dim(counter)} ${prefix} ${filename} - ${duration}`);
       }
     },
     issue: (issue) => {
+      const counterPadding = " ".repeat(counterLength);
       const prefix = error(prefixes.error);
       const msg =
         issue.message ||
@@ -41,8 +43,7 @@ module.exports.getReporter = function getReporter(settings, _config) {
           : `${issue.text} is an unknown word.`);
       const filename = toRelativePath(issue.uri, root);
       const link = linkify(filename, issue.row, issue.col);
-      // TODO: spaces should be calculated.
-      console.log(`      ${prefix} ${msg} ${link}`);
+      console.log(`${counterPadding} ${prefix} ${msg} ${link}`);
     },
     result: (result) => {
       let p, s;

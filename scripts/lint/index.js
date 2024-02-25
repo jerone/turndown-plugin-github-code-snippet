@@ -131,8 +131,8 @@ async function editorconfigChecker() {
         .split(/\n\r?/g)
         .map((line, index, arr) => {
           const l = arr.length;
-          const indexer = `${pad(index + 1, String(l).length)}/${l}`;
-          return `  ${dim(indexer)} ./${line}`;
+          const counter = `${pad(index + 1, String(l).length)}/${l}`;
+          return `  ${dim(counter)} ./${line}`;
         })
         .join("\n"),
     );

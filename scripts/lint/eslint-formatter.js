@@ -19,6 +19,8 @@ const {
   toRelativePath,
 } = require("./utils");
 
+let counterLength;
+
 function reportFile(result, index, length, path) {
   let prefix;
   if (result.errorCount > 0) {
@@ -28,11 +30,13 @@ function reportFile(result, index, length, path) {
   } else {
     prefix = success(prefixes.success);
   }
-  const indexer = dim(`${pad(index, String(length).length)}/${length}`);
-  return `${indexer} ${prefix} ${path}`;
+  const counter = `${pad(index, String(length).length)}/${length}`;
+  counterLength ??= counter.length;
+  return `${dim(counter)} ${prefix} ${path}`;
 }
 
 function reportMessage(result, path) {
+  const counterPadding = " ".repeat(counterLength);
   let prefix;
   switch (result.severity) {
     case 2:
@@ -44,8 +48,7 @@ function reportMessage(result, path) {
   }
   const rule = dim(`[${result.ruleId}]`);
   const link = linkify(path, result.line, result.column);
-  // TODO: spaces should be calculated.
-  return `      ${prefix} ${result.message} ${rule} ${link}`;
+  return `${counterPadding} ${prefix} ${result.message} ${rule} ${link}`;
 }
 
 function reportSummary(result) {
