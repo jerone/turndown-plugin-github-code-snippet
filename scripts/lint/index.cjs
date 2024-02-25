@@ -20,13 +20,13 @@ const {
   success,
   dim,
   pad,
-} = require("./utils");
+} = require("./utils.cjs");
 
 const enableDebug = false;
 
 function assert(linter, condition, output) {
   if (condition) {
-    warn(`lint.js unexpectedly failed. Maybe ${linter} changed it's output.`);
+    warn(`Linter ${linter} unexpectedly failed. Maybe changed it's output.`);
     console.error(output);
   } else if (enableDebug) {
     console.log(linter, output);
@@ -156,7 +156,7 @@ async function editorconfigChecker() {
  */
 async function cspell() {
   const linter = "CSpell";
-  const cmd = "cspell --reporter ./scripts/lint/cspell-reporter.js .";
+  const cmd = "cspell --reporter ./scripts/lint/cspell-reporter.cjs .";
   header(linter);
   try {
     const output = await execP(cmd);
@@ -177,7 +177,7 @@ async function cspell() {
 async function eslint() {
   const linter = "ESLint";
   const cmd =
-    "eslint --format ./scripts/lint/eslint-formatter.js --report-unused-disable-directives .";
+    "eslint --format ./scripts/lint/eslint-formatter.cjs --report-unused-disable-directives .";
   header(linter);
   try {
     const output = await execP(cmd);

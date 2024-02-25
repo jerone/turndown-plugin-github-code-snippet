@@ -17,7 +17,7 @@ const {
   pad,
   pluralize,
   toRelativePath,
-} = require("./utils");
+} = require("./utils.cjs");
 
 let counterLength;
 

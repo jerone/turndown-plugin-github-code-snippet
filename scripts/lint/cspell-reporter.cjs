@@ -12,7 +12,7 @@ const {
   pad,
   pluralize,
   toRelativePath,
-} = require("./utils");
+} = require("./utils.cjs");
 
 module.exports.getReporter = function getReporter(settings, _config) {
   const root = path.resolve(settings?.root || process.cwd());

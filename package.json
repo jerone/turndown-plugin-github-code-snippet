@@ -18,8 +18,8 @@
   "author": "Jeroen van Warmerdam <jeronevw@hotmail.com>",
   "main": "turndown-plugin-github-code-snippet.js",
   "scripts": {
-    "lint": "node ./scripts/lint/index.js",
-    "lint:fix": "prettier --write \"**/*\" & eslint -f ./scripts/lint/eslint-formatter.js --fix .",
+    "lint": "node ./scripts/lint/index.cjs",
+    "lint:fix": "prettier --write \"**/*\" & eslint -f ./scripts/lint/eslint-formatter.cjs --fix .",
     "test": "node test/turndown-plugin-github-code-snippet-test.js"
   },
   "devDependencies": {
