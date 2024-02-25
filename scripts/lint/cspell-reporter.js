@@ -39,8 +39,8 @@ module.exports.getReporter = function getReporter(settings, _config) {
       const msg =
         issue.message ||
         (issue.isFlagged
-          ? `${issue.text} is a forbidden word.`
-          : `${issue.text} is an unknown word.`);
+          ? `"${issue.text}" is a forbidden word.`
+          : `"${issue.text}" is an unknown word.`);
       const filename = toRelativePath(issue.uri, root);
       const link = linkify(filename, issue.row, issue.col);
       console.log(`${counterPadding} ${prefix} ${msg} ${link}`);
