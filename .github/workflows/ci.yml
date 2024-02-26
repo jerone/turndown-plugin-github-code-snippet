@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: npm ci --no-fund
+      - run: npm run lint
+
+  test:
+    runs-on: ubuntu-latest
+    name: "test (node v${{ matrix.node-version }})"
+    strategy:
+      matrix:
+        node-version: [16, 18, 20]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm ci --no-fund
+      - run: npm run test
