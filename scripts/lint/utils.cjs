@@ -24,23 +24,36 @@ exports.colorReset = color.reset;
 
 /** Print message as error. */
 exports.error = function (msg) {
-  return color.red + msg + color.reset;
+  return wrapLines(msg, color.red, color.reset);
 };
 
 /** Print message as warning. */
 exports.warning = function (msg) {
-  return color.yellow + msg + color.reset;
+  return wrapLines(msg, color.yellow, color.reset);
 };
 
 /** Print message as success. */
 exports.success = function (msg) {
-  return color.green + msg + color.reset;
+  return wrapLines(msg, color.green, color.reset);
 };
 
 /** Print dimmed message. */
 exports.dim = function (msg) {
-  return color.gray + msg + color.reset;
+  return wrapLines(msg, color.gray, color.reset);
 };
+
+/**
+ * ANSI codes cannot wrap over multiple lines.
+ * @param {string} msg Message with optional new lines.
+ * @param {string} ansiOpen ANSI open code.
+ * @param {string} ansiClose ANSI close code.
+ * @returns Message with correctly wrapped ANSI codes.
+ */
+function wrapLines(msg, ansiOpen, ansiClose) {
+  return (
+    ansiOpen + msg.replace(/\r?\n/g, ansiClose + "$&" + ansiOpen) + ansiClose
+  );
+}
 
 /**
  * Linkify path with line and column.
@@ -49,15 +62,24 @@ exports.dim = function (msg) {
  * @param {number} column Column of line.
  */
 exports.linkify = function (path, line, column) {
-  return `${color.blue}${path}:${line}:${column}${color.reset}`;
+  return wrapLines(`${path}:${line}:${column}`, color.blue, color.reset);
 };
 
 /**
  * ANSI styles.
  */
-exports.styles = {
+const styles = {
   underline: "\x1b[4m",
   underlineReset: "\x1b[24m",
+};
+
+/**
+ * Print underlined message.
+ * @param {string} msg Message
+ * @returns Underlined message.
+ */
+exports.underline = function (msg) {
+  return wrapLines(msg, styles.underline, styles.underlineReset);
 };
 
 /**

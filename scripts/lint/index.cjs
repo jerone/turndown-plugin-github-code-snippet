@@ -13,12 +13,12 @@ const { exec } = require("node:child_process");
 const execP = util.promisify(exec);
 const {
   colorReset,
-  styles,
   prefixes,
   error,
   warning,
   success,
   dim,
+  underline,
   pad,
 } = require("./utils.cjs");
 
@@ -76,7 +76,7 @@ function successful(msg, output = undefined) {
 }
 
 function header(linter) {
-  console.log(`\n${styles.underline}${linter}${styles.underlineReset}`);
+  console.log("\n" + underline(linter));
 }
 
 function footer() {
