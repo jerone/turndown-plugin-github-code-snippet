@@ -1,0 +1,47 @@
+name: Security
+
+on:
+  push:
+    branches: ["master"]
+    paths-ignore:
+      - "*.md"
+  pull_request:
+    branches: ["master"]
+    paths-ignore:
+      - "*.md"
+  schedule:
+    - cron: "0 12 * * 0"
+  workflow_dispatch:
+
+jobs:
+  sonarcloud:
+    name: Run SonarCloud scanning
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read # Allows SonarCloud to decorate PRs with analysis results.
+    steps:
+      - uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "21" # SonarCloud requires v17 or higher.
+          check-latest: true
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis.
+      - name: Install dependencies
+        run: npm ci --no-fund
+      - name: Test and coverage
+        run: npm run test
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        if: success() || failure() # Run this step even if previous step failed.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=jerone_turndown-plugin-github-code-snippet
+            -Dsonar.organization=jerone
+            -Dsonar.projectBaseDir=.
+            -Dsonar.sources=./src/
+            -Dsonar.tests=./test/

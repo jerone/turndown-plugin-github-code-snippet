@@ -1,6 +1,8 @@
 # [turndown-plugin-github-code-snippet](https://github.com/jerone/turndown-plugin-github-code-snippet/)
 
-A [Turndown](https://github.com/mixmark-io/turndown) plugin to convert [GitHub code snippet in comments](https://help.github.com/articles/creating-a-permanent-link-to-a-code-snippet/) back into normal links. Useful for UserScripts.
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jerone_turndown-plugin-github-code-snippet&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=jerone_turndown-plugin-github-code-snippet)
+
+> A [Turndown](https://github.com/mixmark-io/turndown) plugin to convert [GitHub code snippet in comments](https://help.github.com/articles/creating-a-permanent-link-to-a-code-snippet/) back into normal links. Useful for UserScripts.
 
 ## Requirements
 

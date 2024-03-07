@@ -1,0 +1,6 @@
+{
+    "sonarlint.connectedMode.project": {
+        "connectionId": "jerone",
+        "projectKey": "jerone_turndown-plugin-github-code-snippet"
+    }
+}
