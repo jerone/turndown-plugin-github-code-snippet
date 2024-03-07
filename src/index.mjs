@@ -1,3 +1,8 @@
+/**
+ * Turndown plugin to convert GitHub code snippet in comments back into normal links.
+ * @param {TurndownService} turndownService - Turndown service
+ * @returns {TurndownService} Turndown service
+ */
 export default function turndownPluginGitHubCodeSnippet(turndownService) {
   return turndownService.addRule("code-snippet", {
     filter: function (node, _options) {
@@ -13,3 +18,7 @@ export default function turndownPluginGitHubCodeSnippet(turndownService) {
     },
   });
 }
+
+/**
+ * @typedef {import('@types/turndown')} TurndownService
+ */

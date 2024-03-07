@@ -1,7 +1,7 @@
 {
   "name": "turndown-plugin-github-code-snippet",
   "version": "1.0.2",
-  "description": "A Turndown plugin to convert GitHub code snippet in comments back into normal links.",
+  "description": "Turndown plugin to convert GitHub code snippet in comments back into normal links",
   "keywords": [
     "turndown",
     "turndown-plugin"
@@ -24,11 +24,13 @@
     "lint": "node ./scripts/lint/index.cjs",
     "lint:fix": "prettier --write \"**/*\" & eslint -f ./scripts/lint/eslint-formatter.cjs --fix .",
     "test": "node test/index.mjs",
+    "typings": "npx -p typescript tsc src/index.mjs --declaration --emitDeclarationOnly --allowJs --outDir types",
     "watch": "parcel watch"
   },
   "devDependencies": {
     "@cspell/cspell-types": "^8.5.0",
     "@eslint-types/prettier": "^5.1.3",
+    "@types/turndown": "^5.0.4",
     "cspell": "^8.5.0",
     "editorconfig-checker": "^5.1.4",
     "eslint": "^8.57.0",
