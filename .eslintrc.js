@@ -13,6 +13,7 @@ module.exports = defineConfig({
   },
   parserOptions: {
     ecmaVersion: "latest",
+    sourceType: "module",
   },
   extends: [
     "eslint:recommended",
@@ -28,6 +29,23 @@ module.exports = defineConfig({
     "no-unused-vars": ["error", { argsIgnorePattern: "^_" }], // Ignore variables whose names begin with an underscore.
   },
   overrides: [
+    /*
+     * JavaScript (ESM & CommonJS) files.
+     */
+    {
+      files: ["*.mjs", "*.cjs"],
+      extends: [
+        "eslint:recommended",
+        "plugin:security/recommended-legacy",
+
+        // Display Prettier errors as ESLint errors.
+        // Enables eslint-plugin-prettier and eslint-config-prettier.
+        "plugin:prettier/recommended",
+
+        //! Prettier should always be the last configuration in the extends array.
+      ],
+    },
+
     /*
      * JSON files.
      */

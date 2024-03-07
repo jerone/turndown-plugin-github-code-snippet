@@ -16,6 +16,8 @@ const cspell = {
   ignorePaths: [
     ".git", // Because `enableGlobDot` is enabled.
     "node_modules", // Because `enableGlobDot` is enabled.
+    ".parcel-cache",
+    "dist",
     ".gitignore", // Generated file and contains many pathnames.
   ],
   enableGlobDot: true,
