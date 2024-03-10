@@ -84,7 +84,7 @@ function header(linter) {
 }
 
 function footer() {
-  console.log("");
+  console.log("   ");
 }
 
 /**
