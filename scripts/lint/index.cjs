@@ -126,10 +126,14 @@ async function editorconfigChecker() {
   header(linter);
   try {
     const dryRun = await execP(cmd + " --dry-run");
+    const lines = dryRun.stdout.trim().split(/\n\r?/g);
+    // EC logs when new exe is downloaded.
+    // See https://github.com/editorconfig-checker/editorconfig-checker.javascript/blob/922e3680544a7a8783c759995e9facb94ba79511/src/index.ts#L12
+    if (lines[0].startsWith("Downloading ")) {
+      console.log(`  ${lines.shift()}`);
+    }
     console.log(
-      dryRun.stdout
-        .trim()
-        .split(/\n\r?/g)
+      lines
         .map((line, index, arr) => {
           const l = arr.length;
           const counter = `${pad(index + 1, String(l).length)}/${l}`;
