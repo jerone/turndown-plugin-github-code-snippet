@@ -19,6 +19,7 @@
   "main": "dist/main.js",
   "module": "dist/module.js",
   "source": "src/index.mjs",
+  "types": "types/index.d.ts",
   "scripts": {
     "build": "parcel build",
     "lint": "node ./scripts/lint/index.cjs",
