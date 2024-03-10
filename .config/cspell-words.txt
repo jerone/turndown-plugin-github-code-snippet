@@ -1,8 +1,14 @@
+Dsonar
 fileoverview
 issuetracker
 Jeroen
+jerone
 linkify
 pjax
 setext
+sonarcloud
+sonarlint
+sonarsource
 sublist
+temurin
 Warmerdam

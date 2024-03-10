@@ -24,6 +24,8 @@ const {
 
 const enableDebug = false;
 
+let hasError = false;
+
 function assert(linter, condition, output) {
   if (condition) {
     warn(`Linter ${linter} unexpectedly failed. Maybe changed it's output.`);
@@ -40,6 +42,8 @@ function assert(linter, condition, output) {
  * @param {string} output Command output.
  */
 function unsuccessful(linter, exception, output) {
+  hasError = true;
+
   if (enableDebug) {
     console.log(`${linter} exception:`, exception);
   }
@@ -80,7 +84,7 @@ function header(linter) {
 }
 
 function footer() {
-  console.log("");
+  console.log("   ");
 }
 
 /**
@@ -204,4 +208,8 @@ async function eslint() {
   await editorconfigChecker();
   await cspell();
   await eslint();
+
+  if (hasError) {
+    process.exit(1);
+  }
 })();
