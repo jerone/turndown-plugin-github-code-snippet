@@ -7,6 +7,7 @@ linkify
 pjax
 setext
 sonarcloud
+sonarlint
 sonarsource
 sublist
 temurin
