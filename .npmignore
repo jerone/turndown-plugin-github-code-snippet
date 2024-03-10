@@ -1,5 +1,6 @@
 *
 !dist/**
+!types/index.d.ts
 !package.json
 !LICENSE
 !README.md
