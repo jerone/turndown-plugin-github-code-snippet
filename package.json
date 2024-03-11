@@ -19,6 +19,8 @@
   "main": "dist/main.js",
   "module": "dist/module.js",
   "source": "src/index.mjs",
+  "browser": "dist/browser.js",
+  "userscript": "dist/userscript.js",
   "types": "types/index.d.ts",
   "scripts": {
     "build": "parcel build",
@@ -53,5 +55,15 @@
   },
   "engines": {
     "node": ">=16.0.0"
+  },
+  "targets": {
+    "userscript": {
+      "isLibrary": false,
+      "scopeHoist": false,
+      "context": "browser",
+      "outputFormat": "global",
+      "optimize": false
+    },
+    "types": false
   }
 }

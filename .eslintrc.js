@@ -2,8 +2,13 @@
 
 // @ts-check
 const { defineConfig } = require("eslint-define-config");
+const { sortOrder: defaultSortOrder } = require("sort-package-json");
 
 /// <reference types="@eslint-types/prettier" />
+
+// Make sure that the `userscript` dist target is near other dist targets (main, module, browser).
+const index = defaultSortOrder.indexOf("browser");
+const sortOrder = defaultSortOrder.splice(index + 1, 0, "userscript");
 
 module.exports = defineConfig({
   root: true,
@@ -84,7 +89,7 @@ module.exports = defineConfig({
         "json-files/require-engines": "error",
         "json-files/require-license": "error",
         "json-files/require-unique-dependency-names": "error",
-        "json-files/sort-package-json": "error",
+        "json-files/sort-package-json": ["error", { sortOrder }],
       },
     },
 

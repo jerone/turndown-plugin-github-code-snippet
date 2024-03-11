@@ -11,4 +11,5 @@ sonarlint
 sonarsource
 sublist
 temurin
+userscript
 Warmerdam
